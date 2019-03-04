@@ -79,10 +79,10 @@ public class RetirejsScanner extends ProbeScanner {
                     Bug bug = bugAuditResult
                             .newBug(title.toString(), getPriorityForSeverity(vulnerability.getSeverity()));
                     StringBuilder description = new StringBuilder();
-                    description.append("A known vulnerability has been found in **")
-                            .append(result.getComponent()).append("** of **").append("**[")
+                    description.append("A known vulnerability in **")
+                            .append(result.getComponent()).append("** exists in ").append("**[")
                             .append(bugAuditResult.getRepo()).append("](")
-                            .append(bugAuditResult.getRepo().getUrl()).append("):**\n");
+                            .append(bugAuditResult.getRepo().getUrl()).append(")**.\n");
                     description.append(" * **Build File Path:** ").append(data.getFile()).append("\n");
                     description.append(" * **Component:** ").append(result.getComponent()).append("\n");
                     description.append(" * **Version:** ").append(result.getVersion()).append("\n");
