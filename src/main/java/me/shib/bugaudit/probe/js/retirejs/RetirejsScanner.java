@@ -36,6 +36,7 @@ public class RetirejsScanner extends ProbeScanner {
 
     private void retirejsExecutor(String command) throws BugAuditException {
         CommandExecutor commandExecutor = new CommandExecutor();
+        commandExecutor.enableConsoleOutput(true);
         commandExecutor.runCommand(command);
         String response = commandExecutor.getConsoleOutput();
         if (response.contains("command not found") || response.contains("is currently not installed")) {
