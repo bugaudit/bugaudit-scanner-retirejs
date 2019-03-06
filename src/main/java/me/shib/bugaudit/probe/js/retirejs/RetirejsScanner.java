@@ -46,7 +46,7 @@ public class RetirejsScanner extends ProbeScanner {
 
     private void installRetireJS() throws BugAuditException {
         System.out.println("Installing RetireJS...");
-        retirejsExecutor("npm install retirejs");
+        retirejsExecutor("npm install -g retirejs");
     }
 
     private void buildProject() throws BugAuditException {
