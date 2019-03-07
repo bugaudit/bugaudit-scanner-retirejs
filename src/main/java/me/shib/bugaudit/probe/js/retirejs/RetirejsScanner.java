@@ -188,16 +188,12 @@ public class RetirejsScanner extends ProbeScanner {
     }
 
     @Override
-    protected void scan() {
-        try {
-            File resultFile = new File(resultFilePath);
-            resultFile.delete();
-            installRetireJS();
-            buildProject();
-            runRetireJS();
-            parseResultData(resultFile);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    protected void scan() throws BugAuditException, IOException {
+        File resultFile = new File(resultFilePath);
+        resultFile.delete();
+        installRetireJS();
+        buildProject();
+        runRetireJS();
+        parseResultData(resultFile);
     }
 }
