@@ -5,7 +5,7 @@ import me.shib.bugaudit.probe.ProbeConfig;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RetirejsConfig extends ProbeConfig {
+public final class RetirejsConfig extends ProbeConfig {
 
     private Map<String, Integer> priorityMap;
 
