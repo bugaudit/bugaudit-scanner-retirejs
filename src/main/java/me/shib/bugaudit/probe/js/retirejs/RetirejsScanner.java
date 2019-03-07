@@ -56,7 +56,7 @@ public final class RetirejsScanner extends ProbeScanner {
 
     private void runRetireJS() throws BugAuditException {
         System.out.println("Running RetireJS...");
-        retirejsExecutor("retire --outputformat json --outputpath " + resultFilePath);
+        retirejsExecutor("retire -p --outputformat json --outputpath " + resultFilePath);
     }
 
     private void parseResultData(File file) throws IOException {
