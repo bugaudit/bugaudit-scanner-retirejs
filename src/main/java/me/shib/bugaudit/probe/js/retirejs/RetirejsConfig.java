@@ -14,7 +14,7 @@ public final class RetirejsConfig extends ProbeConfig {
     }
 
     @Override
-    protected Map<String, Integer> getDefaultPriorityMap() {
+    protected Map<String, Integer> getDefaultClassificationPriorityMap() {
         return this.priorityMap;
     }
 }
