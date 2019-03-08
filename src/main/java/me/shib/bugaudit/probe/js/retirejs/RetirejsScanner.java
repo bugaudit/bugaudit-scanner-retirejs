@@ -17,6 +17,10 @@ public final class RetirejsScanner extends ProbeScanner {
     private static final transient String tool = "RetireJS";
     private static final transient String resultFilePath = "retirejs-output.json";
 
+    public RetirejsScanner() {
+        this.bugAuditResult.addKey("Vulnerable-Dependency");
+    }
+
     private static int getPriorityForSeverity(String severity) {
         switch (severity) {
             case "high":
