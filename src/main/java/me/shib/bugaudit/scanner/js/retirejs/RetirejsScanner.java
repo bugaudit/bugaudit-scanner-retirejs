@@ -1,8 +1,8 @@
-package me.shib.bugaudit.probe.js.retirejs;
+package me.shib.bugaudit.scanner.js.retirejs;
 
-import me.shib.bugaudit.commons.*;
-import me.shib.bugaudit.probe.ProbeConfig;
-import me.shib.bugaudit.probe.ProbeScanner;
+import me.shib.bugaudit.commons.BugAuditContent;
+import me.shib.bugaudit.commons.BugAuditException;
+import me.shib.bugaudit.scanner.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,14 +11,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public final class RetirejsScanner extends ProbeScanner {
+public final class RetirejsScanner extends BugAuditScanner {
 
     private static final transient Lang lang = Lang.JavaScript;
     private static final transient String tool = "RetireJS";
     private static final transient String resultFilePath = "retirejs-output.json";
 
     public RetirejsScanner() {
-        this.bugAuditResult.addKey("Vulnerable-Dependency");
+        this.getBugAuditScanResult().addKey("Vulnerable-Dependency");
     }
 
     private static int getPriorityForSeverity(String severity) {
@@ -75,22 +75,22 @@ public final class RetirejsScanner extends ProbeScanner {
                                 if (vulnerability.getBelow() != null) {
                                     title.append("Vulnerability found in ").append(result.getComponent())
                                             .append(" (Below ").append(vulnerability.getBelow()).append(") of ")
-                                            .append(bugAuditResult.getRepo());
+                                            .append(getBugAuditScanResult().getRepo());
                                 } else if (vulnerability.getAtOrAbove() != null) {
                                     title.append("Vulnerability found in ").append(result.getComponent())
                                             .append(" (At/Above ").append(vulnerability.getAtOrAbove())
-                                            .append(") of ").append(bugAuditResult.getRepo());
+                                            .append(") of ").append(getBugAuditScanResult().getRepo());
                                 } else {
                                     title.append("Vulnerability found in ").append(result.getComponent())
-                                            .append(" of ").append(bugAuditResult.getRepo());
+                                            .append(" of ").append(getBugAuditScanResult().getRepo());
                                 }
-                                Bug bug = bugAuditResult
+                                Bug bug = getBugAuditScanResult()
                                         .newBug(title.toString(), getPriorityForSeverity(vulnerability.getSeverity()));
                                 StringBuilder description = new StringBuilder();
                                 description.append("A known vulnerability in **")
                                         .append(result.getComponent()).append("** exists in ").append("**[")
-                                        .append(bugAuditResult.getRepo()).append("](")
-                                        .append(bugAuditResult.getRepo().getUrl()).append(")**.\n");
+                                        .append(getBugAuditScanResult().getRepo()).append("](")
+                                        .append(getBugAuditScanResult().getRepo().getUrl()).append(")**.\n");
                                 description.append(" * **Build File Path:** ").append(data.getFile()).append("\n");
                                 description.append(" * **Component:** ").append(result.getComponent()).append("\n");
                                 description.append(" * **Version:** ").append(result.getVersion()).append("\n");
@@ -175,7 +175,7 @@ public final class RetirejsScanner extends ProbeScanner {
                                 bug.addKey(data.getFile());
                                 bug.addKey(result.getComponent());
                                 bug.addKey(result.getComponent() + "-" + result.getVersion());
-                                bugAuditResult.addBug(bug);
+                                getBugAuditScanResult().addBug(bug);
                             }
                         }
                     }
@@ -185,7 +185,7 @@ public final class RetirejsScanner extends ProbeScanner {
     }
 
     @Override
-    protected ProbeConfig getDefaultProbeConfig() {
+    protected BugAuditScannerConfig getDefaultScannerConfig() {
         return new RetirejsConfig();
     }
 
@@ -195,14 +195,14 @@ public final class RetirejsScanner extends ProbeScanner {
     }
 
     @Override
-    protected String getTool() {
+    public String getTool() {
         return tool;
     }
 
     @Override
-    protected void scan() throws BugAuditException, IOException {
+    public void scan() throws BugAuditException, IOException {
         File resultFile = new File(resultFilePath);
-        if (!parserOnly) {
+        if (!isParserOnly()) {
             resultFile.delete();
             installRetireJS();
             buildProject();

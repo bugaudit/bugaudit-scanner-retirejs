@@ -4,21 +4,21 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.shib.bugaudit</groupId>
-    <artifactId>bugaudit-probe-retirejs</artifactId>
+    <artifactId>bugaudit-scanner-retirejs</artifactId>
     <version>0.0.1</version>
-    <name>BugAudit Probe - RetireJS</name>
-    <description>A bug audit probe module using RetireJS scanner for JavaScript</description>
-    <url>https://github.com/bugaudit/bugaudit-probe-retirejs</url>
+    <name>BugAudit Scanner - RetireJS</name>
+    <description>A bug audit scanner module using RetireJS scanner for JavaScript</description>
+    <url>https://github.com/bugaudit/bugaudit-scanner-retirejs</url>
 
     <issueManagement>
-        <url>https://github.com/bugaudit/bugaudit-probe-retirejs/issues</url>
+        <url>https://github.com/bugaudit/bugaudit-scanner-retirejs/issues</url>
         <system>GitHub Issues</system>
     </issueManagement>
 
     <scm>
-        <url>https://github.com/bugaudit/bugaudit-probe-retirejs</url>
-        <connection>scm:git:https://github.com/bugaudit/bugaudit-probe-retirejs.git</connection>
-        <developerConnection>scm:git:git@github.com:bugaudit/bugaudit-probe-retirejs.git</developerConnection>
+        <url>https://github.com/bugaudit/bugaudit-scanner-retirejs</url>
+        <connection>scm:git:https://github.com/bugaudit/bugaudit-scanner-retirejs.git</connection>
+        <developerConnection>scm:git:git@github.com:bugaudit/bugaudit-scanner-retirejs.git</developerConnection>
     </scm>
 
     <developers>
@@ -142,7 +142,7 @@
     <dependencies>
         <dependency>
             <groupId>me.shib.bugaudit</groupId>
-            <artifactId>bugaudit-probe</artifactId>
+            <artifactId>bugaudit-scanner</artifactId>
             <version>0.0.1</version>
         </dependency>
     </dependencies>

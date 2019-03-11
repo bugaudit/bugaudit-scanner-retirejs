@@ -1,4 +1,4 @@
-package me.shib.bugaudit.probe.js.retirejs;
+package me.shib.bugaudit.scanner.js.retirejs;
 
 import java.io.File;
 import java.io.IOException;

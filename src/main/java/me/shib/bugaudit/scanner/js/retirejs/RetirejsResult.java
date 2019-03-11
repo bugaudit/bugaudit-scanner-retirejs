@@ -1,4 +1,4 @@
-package me.shib.bugaudit.probe.js.retirejs;
+package me.shib.bugaudit.scanner.js.retirejs;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
