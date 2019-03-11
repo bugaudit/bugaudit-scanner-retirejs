@@ -7,7 +7,7 @@
     <artifactId>bugaudit-scanner-retirejs</artifactId>
     <version>0.0.1</version>
     <name>BugAudit Scanner - RetireJS</name>
-    <description>A bug audit scanner module using RetireJS scanner for JavaScript</description>
+    <description>A bug audit scanner module using RetireJS for JavaScript</description>
     <url>https://github.com/bugaudit/bugaudit-scanner-retirejs</url>
 
     <issueManagement>
