@@ -15,7 +15,7 @@ public final class RetirejsScanner extends BugAuditScanner {
 
     private static final transient Lang lang = Lang.JavaScript;
     private static final transient String tool = "RetireJS";
-    private static final transient String resultFilePath = "retirejs-output.json";
+    private static final transient String resultFilePath = "bugaudit-retirejs-result.json";
 
     public RetirejsScanner() {
         this.getBugAuditScanResult().addKey("Vulnerable-Dependency");
