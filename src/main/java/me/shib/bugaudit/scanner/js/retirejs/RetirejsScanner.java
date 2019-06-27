@@ -2,7 +2,10 @@ package me.shib.bugaudit.scanner.js.retirejs;
 
 import me.shib.bugaudit.commons.BugAuditContent;
 import me.shib.bugaudit.commons.BugAuditException;
-import me.shib.bugaudit.scanner.*;
+import me.shib.bugaudit.scanner.Bug;
+import me.shib.bugaudit.scanner.BugAuditScanner;
+import me.shib.bugaudit.scanner.BugAuditScannerConfig;
+import me.shib.bugaudit.scanner.Lang;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,27 +41,24 @@ public final class RetirejsScanner extends BugAuditScanner {
         }
     }
 
-    private void retirejsExecutor(String command) throws BugAuditException {
-        CommandExecutor commandExecutor = new CommandExecutor();
-        commandExecutor.enableConsoleOutput(true);
-        commandExecutor.runCommand(command);
-        String response = commandExecutor.getConsoleOutput();
+    private void retirejsExecutor(String command) throws BugAuditException, IOException, InterruptedException {
+        String response = runCommand(command);
         if (response.contains("command not found") || response.contains("is currently not installed")) {
             throw new BugAuditException("Install npm before proceeding");
         }
     }
 
-    private void installRetireJS() throws BugAuditException {
+    private void installRetireJS() throws BugAuditException, IOException, InterruptedException {
         System.out.println("Installing RetireJS...");
         retirejsExecutor("npm install -g retirejs");
     }
 
-    private void buildProject() throws BugAuditException {
+    private void buildProject() throws BugAuditException, IOException, InterruptedException {
         System.out.println("Building Project...");
         retirejsExecutor("npm install");
     }
 
-    private void runRetireJS() throws BugAuditException {
+    private void runRetireJS() throws BugAuditException, IOException, InterruptedException {
         System.out.println("Running RetireJS...");
         retirejsExecutor("retire -p --outputformat json --outputpath " + resultFilePath);
     }
@@ -200,7 +200,7 @@ public final class RetirejsScanner extends BugAuditScanner {
     }
 
     @Override
-    public void scan() throws BugAuditException, IOException {
+    public void scan() throws BugAuditException, IOException, InterruptedException {
         File resultFile = new File(resultFilePath);
         if (!isParserOnly()) {
             resultFile.delete();
