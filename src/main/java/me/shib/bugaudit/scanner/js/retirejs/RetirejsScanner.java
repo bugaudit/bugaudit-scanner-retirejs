@@ -63,7 +63,7 @@ public final class RetirejsScanner extends BugAuditScanner {
         retirejsExecutor("retire -p --outputformat json --outputpath " + resultFilePath);
     }
 
-    private void parseResultData(File file) throws IOException {
+    private void parseResultData(File file) throws IOException, BugAuditException {
         RetirejsResult retirejsResult = RetirejsResult.getResult(file);
         if (retirejsResult.getData() != null) {
             for (RetirejsResult.Data data : retirejsResult.getData()) {
