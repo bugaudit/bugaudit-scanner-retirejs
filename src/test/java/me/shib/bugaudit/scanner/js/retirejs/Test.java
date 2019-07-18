@@ -2,23 +2,24 @@ package me.shib.bugaudit.scanner.js.retirejs;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public final class Test {
 
     private static final String currentPath = System.getProperty("user.dir") + "/";
 
-    private static void cleanUpFilePath(RetirejsResult.Data data) {
+    private static void cleanUpFilePath(RetirejsData data) {
         data.setFile(data.getFile().replaceFirst(currentPath, ""));
     }
 
     public static void main(String[] args) throws IOException {
         System.out.println(currentPath);
         int count = 0;
-        RetirejsResult retirejsResult = RetirejsResult.getResult(new File("test.json"));
-        for (RetirejsResult.Data data : retirejsResult.getData()) {
+        List<RetirejsData> dataList = RetirejsData.getDataList(new File("bugaudit-retirejs-result.json"));
+        for (RetirejsData data : dataList) {
             cleanUpFilePath(data);
-            for (RetirejsResult.Data.Result result : data.getResults()) {
-                for (RetirejsResult.Data.Result.Vulnerability vulnerability : result.getVulnerabilities()) {
+            for (RetirejsData.Result result : data.getResults()) {
+                for (RetirejsData.Result.Vulnerability vulnerability : result.getVulnerabilities()) {
                     if (vulnerability.getIdentifiers().getIssue() != null) {
                         System.out.print(vulnerability.getIdentifiers().getIssue() + ": ");
                         for (String info : vulnerability.getInfo()) {
