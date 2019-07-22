@@ -2,11 +2,13 @@ package me.shib.bugaudit.scanner.js.retirejs;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.List;
 
 final class RetirejsResult {
@@ -33,7 +35,7 @@ final class RetirejsResult {
         }
     }
 
-    static synchronized RetirejsResult getResult(File jsonFile) throws IOException {
+    static synchronized List<Data> getResult(File jsonFile) throws IOException {
         StringBuilder jsonContent = new StringBuilder();
         BufferedReader br = new BufferedReader(new FileReader(jsonFile));
         String line;
@@ -41,11 +43,19 @@ final class RetirejsResult {
             jsonContent.append(line).append("\n");
         }
         br.close();
-        RetirejsResult result = gson.fromJson(jsonContent.toString(), RetirejsResult.class);
-        for (Data data : result.getData()) {
+        String json = jsonContent.toString();
+        List<Data> dataList;
+        if (json.startsWith("[")) {
+            Type type = new TypeToken<List<Data>>() {
+            }.getType();
+            dataList = gson.fromJson(json, type);
+        } else {
+            dataList = gson.fromJson(jsonContent.toString(), RetirejsResult.class).data;
+        }
+        for (Data data : dataList) {
             cleanUpFilePath(data);
         }
-        return result;
+        return dataList;
     }
 
     String getVersion() {
@@ -54,10 +64,6 @@ final class RetirejsResult {
 
     String getStart() {
         return start;
-    }
-
-    List<Data> getData() {
-        return data;
     }
 
     final class Data {

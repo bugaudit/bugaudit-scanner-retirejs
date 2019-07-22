@@ -65,9 +65,9 @@ public final class RetirejsScanner extends BugAuditScanner {
     }
 
     private void parseResultData(File file) throws IOException, BugAuditException {
-        RetirejsResult retirejsResult = RetirejsResult.getResult(file);
-        if (retirejsResult.getData() != null) {
-            for (RetirejsResult.Data data : retirejsResult.getData()) {
+        List<RetirejsResult.Data> dataList = RetirejsResult.getResult(file);
+        if (dataList != null) {
+            for (RetirejsResult.Data data : dataList) {
                 if (data.getResults() != null) {
                     for (RetirejsResult.Data.Result result : data.getResults()) {
                         if (result.getVulnerabilities() != null) {

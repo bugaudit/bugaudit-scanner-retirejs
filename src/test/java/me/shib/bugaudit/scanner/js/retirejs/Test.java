@@ -2,6 +2,7 @@ package me.shib.bugaudit.scanner.js.retirejs;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public final class Test {
 
@@ -14,8 +15,8 @@ public final class Test {
     public static void main(String[] args) throws IOException {
         System.out.println(currentPath);
         int count = 0;
-        RetirejsResult retirejsResult = RetirejsResult.getResult(new File("test.json"));
-        for (RetirejsResult.Data data : retirejsResult.getData()) {
+        List<RetirejsResult.Data> dataList = RetirejsResult.getResult(new File("test.json"));
+        for (RetirejsResult.Data data : dataList) {
             cleanUpFilePath(data);
             for (RetirejsResult.Data.Result result : data.getResults()) {
                 for (RetirejsResult.Data.Result.Vulnerability vulnerability : result.getVulnerabilities()) {
