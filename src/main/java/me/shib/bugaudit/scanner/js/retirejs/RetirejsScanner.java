@@ -86,7 +86,7 @@ public final class RetirejsScanner extends BugAuditScanner {
                                 description.append("A known vulnerability in **")
                                         .append(result.getComponent()).append("** exists in ").append("**[")
                                         .append(getBugAuditScanResult().getRepo()).append("](")
-                                        .append(getBugAuditScanResult().getRepo().getUrl()).append(")**.\n");
+                                        .append(getBugAuditScanResult().getRepo().getWebUrl()).append(")**.\n");
                                 description.append(" * **Build File Path:** ").append(data.getFile()).append("\n");
                                 description.append(" * **Component:** ").append(result.getComponent()).append("\n");
                                 description.append(" * **Version:** ").append(result.getVersion()).append("\n");
