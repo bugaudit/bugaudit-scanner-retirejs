@@ -49,11 +49,6 @@ public final class RetirejsScanner extends BugAuditScanner {
         }
     }
 
-    private void installRetireJS() throws BugAuditException, IOException, InterruptedException {
-        System.out.println("Installing RetireJS...");
-        retirejsExecutor("npm install -g retire");
-    }
-
     private void buildProject() throws BugAuditException, IOException, InterruptedException {
         System.out.println("Building Project...");
         retirejsExecutor("npm install");
@@ -205,7 +200,6 @@ public final class RetirejsScanner extends BugAuditScanner {
         File resultFile = new File(resultFilePath);
         if (!isParserOnly()) {
             resultFile.delete();
-            installRetireJS();
             buildProject();
             runRetireJS();
         }
