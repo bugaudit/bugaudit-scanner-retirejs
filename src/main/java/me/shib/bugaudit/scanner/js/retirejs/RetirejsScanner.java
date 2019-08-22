@@ -4,7 +4,6 @@ import me.shib.bugaudit.commons.BugAuditContent;
 import me.shib.bugaudit.commons.BugAuditException;
 import me.shib.bugaudit.scanner.Bug;
 import me.shib.bugaudit.scanner.BugAuditScanner;
-import me.shib.bugaudit.scanner.BugAuditScannerConfig;
 import me.shib.bugaudit.scanner.Lang;
 
 import java.io.File;
@@ -178,11 +177,6 @@ public final class RetirejsScanner extends BugAuditScanner {
                 }
             }
         }
-    }
-
-    @Override
-    protected BugAuditScannerConfig getDefaultScannerConfig() {
-        return new RetirejsConfig();
     }
 
     @Override
