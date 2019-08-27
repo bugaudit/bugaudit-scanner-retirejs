@@ -79,8 +79,7 @@ public final class RetirejsScanner extends BugAuditScanner {
                                     title.append("Vulnerability found in ").append(result.getComponent())
                                             .append(" of ").append(getBugAuditScanResult().getRepo());
                                 }
-                                Bug bug = getBugAuditScanResult()
-                                        .newBug(title.toString(), getPriorityForSeverity(vulnerability.getSeverity()));
+                                Bug bug = new Bug(title.toString(), getPriorityForSeverity(vulnerability.getSeverity()));
                                 StringBuilder description = new StringBuilder();
                                 description.append("A known vulnerability in **")
                                         .append(result.getComponent()).append("** exists in ").append("**[")
