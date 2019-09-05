@@ -48,7 +48,7 @@ public final class RetirejsScanner extends BugAuditScanner {
         }
     }
 
-    private void buildProject() throws BugAuditException, IOException, InterruptedException {
+    private void npmProjectBuild() throws BugAuditException, IOException, InterruptedException {
         System.out.println("Building Project...");
         retirejsExecutor("npm install");
     }
@@ -193,7 +193,7 @@ public final class RetirejsScanner extends BugAuditScanner {
         File resultFile = new File(resultFilePath);
         if (!isParserOnly()) {
             resultFile.delete();
-            buildProject();
+            npmProjectBuild();
             runRetireJS();
         }
         parseResultData(resultFile);
