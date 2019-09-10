@@ -27,15 +27,11 @@ public final class RetirejsScanner extends BugAuditScanner {
     private static int getPriorityForSeverity(String severity) {
         switch (severity) {
             case "high":
+            case "critical":
+            case "urgent":
                 return 2;
-            case "medium":
-                return 3;
             case "low":
                 return 4;
-            case "urgent":
-                return 1;
-            case "critical":
-                return 1;
             default:
                 return 3;
         }
