@@ -17,7 +17,7 @@ public final class RetirejsScanner extends BugAuditScanner {
 
     private static final transient Lang lang = Lang.JavaScript;
     private static final transient String tool = "RetireJS";
-    private static final transient String resultFilePath = "bugaudit-retirejs-result.json";
+    private static final transient File retireJsResultFile = new File("bugaudit-retirejs-result.json");
 
     public RetirejsScanner() throws BugAuditException {
         super();
@@ -51,7 +51,7 @@ public final class RetirejsScanner extends BugAuditScanner {
 
     private void runRetireJS() throws BugAuditException, IOException, InterruptedException {
         System.out.println("Running RetireJS...");
-        retirejsExecutor("retire -p --outputformat json --outputpath " + resultFilePath);
+        retirejsExecutor("retire -p --outputformat json --outputpath " + retireJsResultFile.getAbsolutePath());
     }
 
     private void parseResultData(File file) throws IOException, BugAuditException {
@@ -186,12 +186,11 @@ public final class RetirejsScanner extends BugAuditScanner {
 
     @Override
     public void scan() throws BugAuditException, IOException, InterruptedException {
-        File resultFile = new File(resultFilePath);
         if (!isParserOnly()) {
-            resultFile.delete();
+            retireJsResultFile.delete();
             npmProjectBuild();
             runRetireJS();
         }
-        parseResultData(resultFile);
+        parseResultData(retireJsResultFile);
     }
 }
