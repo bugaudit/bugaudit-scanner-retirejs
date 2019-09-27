@@ -15,7 +15,6 @@ import java.util.Set;
 
 public final class RetirejsScanner extends BugAuditScanner {
 
-    private static final transient Lang lang = Lang.JavaScript;
     private static final transient String tool = "RetireJS";
     private static final transient File retireJsResultFile = new File("bugaudit-retirejs-result.json");
 
@@ -175,8 +174,8 @@ public final class RetirejsScanner extends BugAuditScanner {
     }
 
     @Override
-    protected Lang getLang() {
-        return lang;
+    protected boolean isLangSupported(Lang lang) {
+        return lang == Lang.JavaScript;
     }
 
     @Override
